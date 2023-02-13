@@ -1,13 +1,13 @@
-const SquareGenerator = () => {
-     const generateSquares = (n) => {
-       let squares = [];
-       for (let i = 1; i <= n; i++) {
-         squares.push({ color: 'white', number: i });
-       }
-       return squares;
-     };
-   
-     return generateSquares(36);
-   };
+const SquareGenerator = (rows, cols) => {
+  const generateSquares = () => {
+    let squares = [];
+    for (let i = 1; i <= rows * cols; i++) {
+      squares.push({ color: "white", number: i });
+    }
+    return squares;
+  };
 
-   export default SquareGenerator
+  return generateSquares(rows, cols);
+};
+
+export default SquareGenerator;

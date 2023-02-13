@@ -6,8 +6,7 @@ const canvasRef = useRef(null);
 useEffect(() => {
 if (!imageSrc) return;
 
-css
-Copy code
+
 const canvas = canvasRef.current;
 const ctx = canvas.getContext("2d");
 const img = new Image();

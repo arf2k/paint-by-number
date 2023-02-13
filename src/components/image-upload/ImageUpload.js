@@ -40,7 +40,7 @@
 // export default ImageUpload;
 
 import React, { useState } from "react";
-import Canvas from "./Canvas";
+import Canvas from "../canvas/Canvas";
 
 const ImageUpload = ({ onImageUpload }) => {
 const [imageSrc, setImageSrc] = useState("");
