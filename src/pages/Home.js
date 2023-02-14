@@ -43,6 +43,7 @@ import Palette from "../components/palette/Palette";
 import GridChangeInput from "../components/grid-change-input/GridChangeInput";
 import SquareGenerator from "../components/SquareGenerator";
 import ImageUpload from "../components/image-upload/ImageUpload";
+import Canvas from "../components/canvas/Canvas";
 
 const Home = () => {
   const [imageSrc, setImageSrc] = useState("");
@@ -62,20 +63,23 @@ const Home = () => {
 
   const onGridChange = (rows, cols) => {
     setGridSize({ rows, cols });
-    setSquares(SquareGenerator(rows, cols));
+  setSquares(SquareGenerator(rows, cols));
   };
 
   return (
     <div>
-      <ImageUpload onImageUpload={setImageSrc} />
-      <GridChangeInput gridSize={gridSize} onGridChange={onGridChange} />
-      {gridSize.rows > 0 && gridSize.cols > 0 && (
-        <>
-          <Palette colors={["white", "red", "blue", "green"]} onColorClick={onColorClick} />
-          <Grid squares={squares} onSquareClick={changeColor}rows={gridSize.rows} cols={gridSize.cols} />
-        </>
-      )}
-    </div>
+    <ImageUpload onImageUpload={setImageSrc} />
+    <GridChangeInput gridSize={gridSize} onGridChange={onGridChange} />
+    {!imageSrc && gridSize.rows > 0 && gridSize.cols > 0 && (
+      <>
+        <Palette colors={["white", "red", "blue", "green"]} onColorClick={onColorClick} />
+        <Grid squares={squares} onSquareClick={changeColor} rows={gridSize.rows} cols={gridSize.cols} />
+      </>
+    )}
+    {imageSrc && gridSize.rows > 0 && gridSize.cols > 0 && (
+      <Canvas imageSrc={imageSrc} rows={gridSize.rows} cols={gridSize.cols} />
+    )}
+  </div>
   );
 };
 
