@@ -1,8 +1,6 @@
 import React, { useRef, useEffect } from "react";
 
-
-
-const Canvas = ({ imageSrc, rows, cols }) => {
+const Canvas = ({ imageSrc, rows, cols, onSquareClick, selectedColor }) => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -34,7 +32,25 @@ const Canvas = ({ imageSrc, rows, cols }) => {
     };
   }, [imageSrc, rows, cols]);
 
-  return <canvas ref={canvasRef} />;
+  const handleCanvasClick = (event) => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
+    const x = event.clientX - canvas.offsetLeft;
+    const y = event.clientY - canvas.offsetTop;
+    const squareWidth = canvas.width / cols;
+    const squareHeight = canvas.height / rows;
+    const col = Math.floor(x / squareWidth);
+    const row = Math.floor(y / squareHeight);
+    const index = row * cols + col;
+
+    console.log("Clicked square index:", index);
+    onSquareClick(index);
+
+    ctx.fillStyle = selectedColor
+    ctx.fillRect(col * squareWidth, row * squareHeight, squareWidth, squareHeight);
+  };
+
+  return <canvas ref={canvasRef} onClick={handleCanvasClick} />;
 };
 
 export default Canvas;
