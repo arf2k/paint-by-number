@@ -1,6 +1,7 @@
 
 import React, { useRef, useEffect } from "react";
 // Right square and right tint but no styling 
+// import { StyledCanvasFrame, StyledCanvasWrapper, StyledCanvas } from "./CanvasStyles";
 
 const Canvas = ({ imageSrc, rows, cols, onSquareClick, selectedColor }) => {
   const canvasRef = useRef(null);
@@ -66,7 +67,18 @@ const Canvas = ({ imageSrc, rows, cols, onSquareClick, selectedColor }) => {
     ctx.fillRect(col * squareWidth, row * squareHeight, squareWidth, squareHeight);
   };
 
-  return <canvas ref={canvasRef} onClick={handleCanvasClick} />;
+  return (
+  
+
+  <canvas ref={canvasRef} onClick={handleCanvasClick}style={{
+    display: "block",
+    margin: "0 auto",
+    marginTop: "100px",
+    boxShadow: "0 0 10px #999",
+    border: "10px solid #333",
+  }} />
+ 
+  )
 };
 
 export default Canvas;
