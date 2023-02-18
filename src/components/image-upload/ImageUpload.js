@@ -57,15 +57,8 @@ reader.readAsDataURL(e.target.files[0]);
 return (
 <div>
 <input type="file" onChange={handleImageUpload} />
-{imageSrc && <Canvas imageSrc={imageSrc} />}
 </div>
 );
 };
 
 export default ImageUpload;
-
-
-
-
-
-
